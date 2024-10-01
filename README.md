@@ -1,5 +1,3 @@
-### README.md para el proyecto **SIGMAYA**
-
 # SIGMAYA - Sistema Integrado de Gestión Moderna Académica y Administrativa
 
 **Autores**:  
