@@ -2,7 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { InteractiveScheduleComponent } from '@/components/interactive-schedule'
-import { StudentTab } from '@/components/student-tab'
+import { TabTemplate } from '@/components/tab-template'
 
 interface Class {
   id: number
@@ -115,7 +115,7 @@ const tabData = [
   }
 ]
 
-export function StudentTabs({ classes }: StudentTabsProps) {
+export function StudentTabs({ }: StudentTabsProps) {
   return (
     <Tabs defaultValue="schedule" className="space-y-4">
       <TabsList>
@@ -130,7 +130,7 @@ export function StudentTabs({ classes }: StudentTabsProps) {
       </TabsContent>
 
       {tabData.map(tab => (
-        <StudentTab key={tab.value} value={tab.value} title={tab.title} sections={tab.sections} />
+        <TabTemplate key={tab.value} value={tab.value} title={tab.title} sections={tab.sections} />
       ))}
     </Tabs>
   )
