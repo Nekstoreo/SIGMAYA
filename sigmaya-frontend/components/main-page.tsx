@@ -11,8 +11,8 @@ const newsItems = [
   { id: 3, title: "Éxito en la feria de empleo anual", excerpt: "Más de 500 estudiantes consiguieron oportunidades de prácticas y empleo en el evento de este año.", link: "#" },
 ]
 
-export default function DashboardComponent() {
-  const [userRoles, setUserRoles] = useState<Array<'Estudiante' | 'Profesor' | 'Exalumno/Amigo'>>(['Estudiante', 'Profesor', 'Exalumno/Amigo'])
+export default function MainPage() {
+  const [userRoles, setUserRoles] = useState<Array<'student' | 'teacher' | 'friend'>>(['student', 'teacher', 'friend'])
   const [userName, setUserName] = useState('María García')
 
   return (

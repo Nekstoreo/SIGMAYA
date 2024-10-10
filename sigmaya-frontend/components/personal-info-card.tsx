@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge'
 
 interface PersonalInfoCardProps {
   userName: string
-  userRoles: Array<'Estudiante' | 'Profesor' | 'Exalumno/Amigo'>
+  userRoles: Array<"student" | "teacher" | "friend">
 }
 
 export default function PersonalInfoCard({ userName, userRoles }: PersonalInfoCardProps) {
