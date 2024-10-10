@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Book, ClipboardList, Users, Briefcase } from "lucide-react";
 import Navbar from "@/components/navbar";
 import { QuickLinks } from "@/components/quick-links";
 import { StudentTabs } from "@/components/student-tabs";
+import { CourseRegistration } from '@/components/course-registration'
 
 interface Class {
   id: number;
@@ -53,22 +54,67 @@ const quickLinks = [
   },
 ];
 
-export default function StudentDashboardComponent() {
+export default function StudentDashboard() {
   const [userRoles, setUserRoles] = useState<
     Array<"student" | "teacher" | "friend">
   >(["student", "teacher"]);
   const [userName, setUserName] = useState("María García");
+  const [currentView, setCurrentView] = useState('')
+
+  useEffect(() => {
+    // Obtener el hash inicial
+    const hash = window.location.hash.replace('#', '')
+    setCurrentView(hash)
+
+    // Escuchar cambios en el hash
+    const handleHashChange = () => {
+      const newHash = window.location.hash.replace('#', '')
+      setCurrentView(newHash)
+    }
+
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
+  const handleBackToDashboard = () => {
+    window.location.hash = ''
+    setCurrentView('')
+  }
+
+  const renderContent = () => {
+    switch (currentView) {
+      case 'registro-cursos':
+        return (
+          <>
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Registro de Cursos</h2>
+              <button
+                onClick={handleBackToDashboard}
+                className="px-4 py-2 text-sm font-medium text-indigo-600 hover:text-indigo-800"
+              >
+                Volver al Dashboard
+              </button>
+            </div>
+            <CourseRegistration />
+          </>
+        )
+      default:
+        return (
+          <>
+            <h1 className="text-3xl font-bold text-gray-900 mb-6">Panel de Estudiante</h1>
+            <QuickLinks links={quickLinks} />
+            <StudentTabs classes={classes} />
+          </>
+        )
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <Navbar userName={userName} userRoles={userRoles} />
+      <Navbar userName={userName} userRoles={userRoles}  />
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
-          <h1 className="text-3xl font-bold text-gray-900 mb-6">
-            Panel de Estudiante
-          </h1>
-          <QuickLinks links={quickLinks} />
-          <StudentTabs classes={classes} />
+          {renderContent()}
         </div>
       </main>
     </div>
