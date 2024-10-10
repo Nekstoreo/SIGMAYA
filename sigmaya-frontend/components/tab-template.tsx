@@ -13,7 +13,7 @@ interface StudentTabProps {
   }>
 }
 
-export function StudentTab({ value, title, sections }: StudentTabProps) {
+export function TabTemplate({ value, title, sections }: StudentTabProps) {
   return (
     <TabsContent value={value}>
       <Card>

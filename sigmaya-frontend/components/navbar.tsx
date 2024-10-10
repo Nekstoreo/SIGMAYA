@@ -1,19 +1,23 @@
-'use client'
-
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { Bell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface NavbarProps {
-  userRoles: Array<"Estudiante" | "Profesor" | "Exalumno/Amigo">;
+  userRoles: Array<"student" | "teacher" | "friend">;
   userName: string;
 }
 
 export default function Navbar({ userRoles, userName }: NavbarProps) {
   const currentPath = usePathname();
+
+  const tabs: Array<{ role: "student" | "teacher" | "friend"; label: string }> = [
+    { role: "student", label: "Estudiante" },
+    { role: "teacher", label: "Profesor" },
+    { role: "friend", label: "Exalumno" },
+  ];
 
   return (
     <nav className="bg-white shadow-md">
@@ -35,41 +39,21 @@ export default function Navbar({ userRoles, userName }: NavbarProps) {
               >
                 Inicio
               </Link>
-              {userRoles.includes("Estudiante") && (
-                <Link
-                  href="/dashboard/student"
-                  className={`${
-                    currentPath === "/dashboard/student"
-                      ? "border-indigo-500 text-gray-900"
-                      : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                  } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
-                >
-                  Estudiante
-                </Link>
-              )}
-              {userRoles.includes("Profesor") && (
-                <Link
-                  href="/dashboard/teacher"
-                  className={`${
-                    currentPath === "/dashboard/teacher"
-                      ? "border-indigo-500 text-gray-900"
-                      : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                  } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
-                >
-                  Profesor
-                </Link>
-              )}
-              {userRoles.includes("Exalumno/Amigo") && (
-                <Link
-                  href="/dashboard/friend"
-                  className={`${
-                    currentPath === "/dashboard/friend"
-                      ? "border-indigo-500 text-gray-900"
-                      : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                  } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
-                >
-                  Exalumno
-                </Link>
+              {tabs.map(
+                (tab) =>
+                  userRoles.includes(tab.role) && (
+                    <Link
+                      key={tab.role}
+                      href={`${currentPath}/${tab.role.toLowerCase()}`}
+                      className={`${
+                        currentPath.includes(tab.label.toLowerCase())
+                          ? "border-indigo-500 text-gray-900"
+                          : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                      } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                    >
+                      {tab.label}
+                    </Link>
+                  )
               )}
             </div>
           </div>
@@ -79,16 +63,8 @@ export default function Navbar({ userRoles, userName }: NavbarProps) {
             </Button>
             <div className="ml-3 relative">
               <Avatar>
-                <AvatarImage
-                  src="/placeholder.svg?height=32&width=32"
-                  alt={userName}
-                />
-                <AvatarFallback>
-                  {userName
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </AvatarFallback>
+                <AvatarImage src="/placeholder.svg?height=32&width=32" alt={userName} />
+                <AvatarFallback>{userName.split(' ').map(n => n[0]).join('')}</AvatarFallback>
               </Avatar>
             </div>
           </div>
