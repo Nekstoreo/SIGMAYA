@@ -62,6 +62,16 @@ export default function StudentDashboard() {
   const [currentView, setCurrentView] = useState('')
 
   useEffect(() => {
+    // Limpiar el hash si venimos de otra ruta
+    const cleanHash = () => {
+      if (window.location.hash) {
+        window.location.hash = '';
+      }
+    }
+
+    // Limpiar el hash al montar el componente
+    cleanHash();
+
     // Obtener el hash inicial
     const hash = window.location.hash.replace('#', '')
     setCurrentView(hash)
@@ -111,7 +121,7 @@ export default function StudentDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      <Navbar userName={userName} userRoles={userRoles}  />
+      <Navbar userName={userName} userRoles={userRoles} onRoleChange={() => window.location.hash = ''} />
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
           {renderContent()}
