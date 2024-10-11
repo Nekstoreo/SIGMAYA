@@ -8,9 +8,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 interface NavbarProps {
   userRoles: Array<"student" | "teacher" | "friend">;
   userName: string;
+  onRoleChange?: () => void;
 }
 
-export default function Navbar({ userRoles, userName }: NavbarProps) {
+export default function Navbar({ userRoles, userName, onRoleChange }: NavbarProps) {
   const currentPath = usePathname();
 
   const tabs: Array<{ role: "student" | "teacher" | "friend"; label: string }> = [
@@ -18,6 +19,12 @@ export default function Navbar({ userRoles, userName }: NavbarProps) {
     { role: "teacher", label: "Profesor" },
     { role: "friend", label: "Exalumno" },
   ];
+
+  const handleRoleChange = () => {
+    if (onRoleChange) {
+      onRoleChange();
+    }
+  };
 
   return (
     <nav className="bg-white shadow-md">
@@ -31,6 +38,7 @@ export default function Navbar({ userRoles, userName }: NavbarProps) {
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link
                 href="/dashboard"
+                onClick={handleRoleChange}
                 className={`${
                   currentPath === "/dashboard"
                     ? "border-indigo-500 text-gray-900"
@@ -44,9 +52,10 @@ export default function Navbar({ userRoles, userName }: NavbarProps) {
                   userRoles.includes(tab.role) && (
                     <Link
                       key={tab.role}
-                      href={`${currentPath}/${tab.role.toLowerCase()}`}
+                      href={`/dashboard/${tab.role.toLowerCase()}`}
+                      onClick={handleRoleChange}
                       className={`${
-                        currentPath.includes(tab.label.toLowerCase())
+                        currentPath === `/dashboard/${tab.role.toLowerCase()}`
                           ? "border-indigo-500 text-gray-900"
                           : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
                       } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
