@@ -14,10 +14,9 @@ interface NavbarProps {
 export default function Navbar({ userRoles, userName, onRoleChange }: NavbarProps) {
   const currentPath = usePathname();
 
-  const tabs: Array<{ role: "student" | "teacher" | "friend"; label: string }> = [
+  const tabs: Array<{ role: "student" | "teacher"; label: string }> = [
     { role: "student", label: "Estudiante" },
     { role: "teacher", label: "Profesor" },
-    { role: "friend", label: "Exalumno" },
   ];
 
   const handleRoleChange = () => {
@@ -47,23 +46,20 @@ export default function Navbar({ userRoles, userName, onRoleChange }: NavbarProp
               >
                 Inicio
               </Link>
-              {tabs.map(
-                (tab) =>
-                  userRoles.includes(tab.role) && (
-                    <Link
-                      key={tab.role}
-                      href={`/dashboard/${tab.role.toLowerCase()}`}
-                      onClick={handleRoleChange}
-                      className={`${
-                        currentPath === `/dashboard/${tab.role.toLowerCase()}`
-                          ? "border-indigo-500 text-gray-900"
-                          : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
-                      } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
-                    >
-                      {tab.label}
-                    </Link>
-                  )
-              )}
+              {tabs.map((tab) => (
+                <Link
+                  key={tab.role}
+                  href={`/dashboard/${tab.role.toLowerCase()}`}
+                  onClick={handleRoleChange}
+                  className={`${
+                    currentPath === `/dashboard/${tab.role.toLowerCase()}`
+                      ? "border-indigo-500 text-gray-900"
+                      : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                >
+                  {tab.label}
+                </Link>
+              ))}
             </div>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
