@@ -1,7 +1,7 @@
 import React from "react";
 import CourseDetails from "@/components/course-details";
 import GradesTable from "@/components/grades-table";
-import { GradeCalculator } from "@/components/grade-calculator";
+import GradeCalculator from "@/components/grade-calculator";
 
 interface CourseInfo {
   nrc: string;

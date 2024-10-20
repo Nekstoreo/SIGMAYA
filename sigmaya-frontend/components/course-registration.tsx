@@ -43,7 +43,7 @@ const materias: Materia[] = [
   },
 ]
 
-export function CourseRegistration() {
+export default function CourseRegistration() {
   const [materiasSeleccionadas, setMateriasSeleccionadas] = useState<Materia[]>([])
   const [busqueda, setBusqueda] = useState('')
   const [creditosTotal, setCreditosTotal] = useState(0)

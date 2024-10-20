@@ -67,10 +67,12 @@ export default function Navbar({ userRoles, userName, onRoleChange }: NavbarProp
               <Bell className="h-5 w-5" />
             </Button>
             <div className="ml-3 relative">
+              <Link href="/dashboard/student/profile">
               <Avatar>
                 <AvatarImage src="/placeholder.svg?height=32&width=32" alt={userName} />
                 <AvatarFallback>{userName.split(' ').map(n => n[0]).join('')}</AvatarFallback>
               </Avatar>
+              </Link>
             </div>
           </div>
         </div>

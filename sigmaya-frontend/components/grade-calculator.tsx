@@ -14,7 +14,7 @@ interface Props {
   initialEvaluations: Evaluation[];
 }
 
-export function GradeCalculator({ initialEvaluations }: Props) {
+export default function GradeCalculator({ initialEvaluations }: Props) {
   const [evaluations, setEvaluations] = useState<Evaluation[]>(initialEvaluations);
 
   const [finalGrade, setFinalGrade] = useState<number | null>(null);
