@@ -15,7 +15,7 @@ interface StudentTabsProps {
   classes: Class[];
 }
 
-export function StudentTabs({}: StudentTabsProps) {
+export default function StudentTabs({}: StudentTabsProps) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -25,13 +25,17 @@ export function StudentTabs({}: StudentTabsProps) {
       description:
         "Inscribe tus cursos, realiza tu matrícula y analiza tu estado de cuenta.",
       buttonText: "Ir a Registro",
-      buttonAction: () => alert("En Construcción"),
+      buttonAction: () => {
+        router.push(`${pathname}/course-registration`);
+      },
     },
     {
       heading: "Perfil del Estudiante",
       description: "Visualiza tu información académica en un solo sitio.",
       buttonText: "Ver Perfil",
-      buttonAction: () => alert("En Construcción"),
+      buttonAction: () => {
+        router.push(`${pathname}/profile`);
+      },
     },
     {
       heading: "Seguimiento a la formación",
