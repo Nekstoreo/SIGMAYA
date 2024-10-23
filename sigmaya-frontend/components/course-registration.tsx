@@ -55,12 +55,13 @@ const materias: Materia[] = [
   },
 ]
 
-export function CourseRegistration() {
-  const { toast } = useToast()
+export default function CourseRegistration() {
+
   const [materiasSeleccionadas, setMateriasSeleccionadas] = useState<Materia[]>([])
   const [busqueda, setBusqueda] = useState('')
   const [creditosTotal, setCreditosTotal] = useState(0)
   const [dialogoConfirmacionAbierto, setDialogoConfirmacionAbierto] = useState(false)
+  const { toast } = useToast()
 
   const agregarMateria = (materia: Materia) => {
     if (materiasSeleccionadas.find(m => m.id === materia.id)) {

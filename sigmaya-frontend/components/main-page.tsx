@@ -12,8 +12,8 @@ const newsItems = [
 ]
 
 export default function MainPage() {
-  const [userRoles, setUserRoles] = useState<Array<'student' | 'teacher' | 'friend'>>(['student', 'teacher', 'friend'])
-  const [userName, setUserName] = useState('María García')
+  const [userRoles] = useState<Array<'student' | 'teacher'>>(['student', 'teacher'])
+  const [userName] = useState('María García')
 
   return (
     <div className="min-h-screen bg-gray-100">
