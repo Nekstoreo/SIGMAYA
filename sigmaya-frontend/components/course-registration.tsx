@@ -5,6 +5,18 @@ import { Search, Filter, Calendar, AlertCircle } from 'lucide-react'
 import { Card, CardHeader, CardContent } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
+import { Toaster } from '@/components/ui/toaster'
+import { useToast } from '@/components/ui/use-toast'
+import { 
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
 
 interface Materia {
   id: number
@@ -44,9 +56,11 @@ const materias: Materia[] = [
 ]
 
 export function CourseRegistration() {
+  const { toast } = useToast()
   const [materiasSeleccionadas, setMateriasSeleccionadas] = useState<Materia[]>([])
   const [busqueda, setBusqueda] = useState('')
   const [creditosTotal, setCreditosTotal] = useState(0)
+  const [dialogoConfirmacionAbierto, setDialogoConfirmacionAbierto] = useState(false)
 
   const agregarMateria = (materia: Materia) => {
     if (materiasSeleccionadas.find(m => m.id === materia.id)) {
@@ -55,7 +69,11 @@ export function CourseRegistration() {
     
     const nuevoTotal = creditosTotal + materia.creditos
     if (nuevoTotal > 21) {
-      alert('No puedes inscribir más de 21 créditos')
+      toast({
+        variant: "destructive",
+        title: "Límite de créditos excedido",
+        description: "No puedes inscribir más de 21 créditos por semestre.",
+      })
       return
     }
     
@@ -66,6 +84,33 @@ export function CourseRegistration() {
   const removerMateria = (materia: Materia) => {
     setMateriasSeleccionadas(materiasSeleccionadas.filter(m => m.id !== materia.id))
     setCreditosTotal(creditosTotal - materia.creditos)
+  }
+
+  const confirmarInscripcion = () => {
+    // Aquí iría la lógica para enviar los datos al servidor
+    toast({
+      variant: "default",
+      className: "bg-green-50 border-green-200",
+      title: "¡Inscripción exitosa!",
+      description: (
+        <div className="mt-2">
+          <p>Se han inscrito {materiasSeleccionadas.length} materias para un total de {creditosTotal} créditos.</p>
+          <ul className="mt-2 list-disc list-inside">
+            {materiasSeleccionadas.map(materia => (
+              <li key={materia.id} className="text-sm">
+                {materia.nombre} ({materia.codigo})
+              </li>
+            ))}
+          </ul>
+        </div>
+      ),
+      duration: 5000,
+    })
+    
+    // Limpiar el formulario
+    setMateriasSeleccionadas([])
+    setCreditosTotal(0)
+    setDialogoConfirmacionAbierto(false)
   }
 
   const materiasFiltradas = materias.filter(materia => 
@@ -160,7 +205,11 @@ export function CourseRegistration() {
                 ))}
 
                 <div className="mt-6">
-                  <Button className="w-full bg-indigo-600 hover:bg-indigo-700">
+                  <Button 
+                    className="w-full bg-indigo-600 hover:bg-indigo-700"
+                    onClick={() => setDialogoConfirmacionAbierto(true)}
+                    disabled={materiasSeleccionadas.length === 0}
+                  >
                     Confirmar Inscripción
                   </Button>
                 </div>
@@ -169,6 +218,36 @@ export function CourseRegistration() {
           </CardContent>
         </Card>
       </div>
+
+      <AlertDialog open={dialogoConfirmacionAbierto} onOpenChange={setDialogoConfirmacionAbierto}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirmar Inscripción</AlertDialogTitle>
+            <AlertDialogDescription>
+              <p>Estás a punto de inscribir las siguientes materias:</p>
+              <ul className="mt-2 list-disc list-inside">
+                {materiasSeleccionadas.map(materia => (
+                  <li key={materia.id} className="text-sm">
+                    {materia.nombre} ({materia.codigo}) - {materia.horario}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2">Total de créditos: {creditosTotal}</p>
+              <p className="mt-2 font-medium text-yellow-600">
+                Esta acción no se puede deshacer.
+              </p>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancelar</AlertDialogCancel>
+            <AlertDialogAction onClick={confirmarInscripcion}>
+              Confirmar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <Toaster />
     </div>
   )
 }
