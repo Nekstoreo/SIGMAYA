@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Book, Calendar, ClipboardList, MessageSquare } from "lucide-react";
 import { TeacherTabs } from "@/components/teacher-tabs";
 import Navbar from "@/components/navbar";
-import { QuickLinks } from "@/components/quick-links";
+import QuickLinks  from "@/components/quick-links";
 
 const classes = [
   {
