@@ -359,6 +359,147 @@ Descripción: Registro de acciones realizadas sobre las inscripciones de cursos.
 
 ### Índices Únicos
 
+#### tbl_sedes
+- idx_nombre (nombre)
+
+#### tbl_escuelas
+- idx_nombre (nombre)
+- idx_sede_id (sede_id)
+
+#### tbl_facultades
+- idx_nombre (nombre)
+- idx_escuela_id (escuela_id)
+
+#### tbl_usuarios
+- idx_email_institucional (email_institucional)
+- idx_numero_documento (numero_documento)
+
+#### tbl_tipos_documento
+- idx_nombre (nombre)
+
+#### tbl_paises
+- idx_nombre (nombre)
+
+#### tbl_regiones
+- idx_nombre (nombre)
+- idx_pais_id (pais_id)
+
+#### tbl_ciudades
+- idx_nombre (nombre)
+- idx_region_id (region_id)
+
+#### tbl_grupos_etnicos
+- idx_nombre (nombre)
+
+#### tbl_identidades_genero
+- idx_nombre (nombre)
+
+#### tbl_estado_civil
+- idx_nombre (nombre)
+
+#### tbl_estados
+- idx_nombre (nombre)
+
+#### tbl_credenciales
+- idx_usuario_id (usuario_id)
+- idx_username (username)
+
+#### tbl_estudiantes
+- idx_estado_id (estado_id)
+- idx_cohorte_id (cohorte_id)
+
+#### tbl_estados_estudiante
+- idx_nombre (nombre)
+
+#### tbl_tipos_admision
+- idx_nombre (nombre)
+
+#### tbl_profesores
+- idx_nivel_academico_id (nivel_academico_id)
+- idx_tipo_contrato_id (tipo_contrato_id)
+
+#### tbl_niveles_academicos
+- idx_nombre (nombre)
+
+#### tbl_tipos_contrato
+- idx_nombre (nombre)
+
+#### tbl_administrativos
+- idx_cargo_id (cargo_id)
+- idx_departamento_id (departamento_id)
+
+#### tbl_cargos_administrativos
+- idx_nombre (nombre)
+
+#### tbl_departamentos
+- idx_nombre (nombre)
+- idx_sede_id (sede_id)
+
+#### tbl_niveles_acceso
+- idx_nombre (nombre)
+
+#### tbl_modalidades
+- idx_nombre (nombre)
+
+#### tbl_programas_academicos
+- idx_nombre (nombre)
+- idx_facultad_id (facultad_id)
+- idx_estado_id (estado_id)
+
+#### tbl_materias
+- idx_nombre (nombre)
+
+#### tbl_cursos
+- idx_materia_id (materia_id)
+- idx_estado_id (estado_id)
+
+#### tbl_prerrequisitos
+- idx_materia_id (materia_id)
+- idx_prerrequisito_materia_id (prerrequisito_materia_id)
+
+#### tbl_secciones
+- idx_curso_id (curso_id)
+- idx_periodo_id (periodo_id)
+- idx_profesor_id (profesor_id)
+- idx_sede_id (sede_id)
+
+#### tbl_periodos_academicos
+- idx_anio (anio)
+- idx_semestre (semestre)
+- idx_estado_id (estado_id)
+
+#### tbl_inscripciones_curso
+- idx_estudiante_id (estudiante_id)
+- idx_nrc (nrc)
+- idx_estado_id (estado_id)
+
+#### tbl_programas_estudiantes
+- idx_estudiante_id (estudiante_id)
+- idx_programa_id (programa_id)
+- idx_sede_id (sede_id)
+- idx_periodo_ingreso_id (periodo_ingreso_id)
+- idx_estado_id (estado_id)
+
+#### tbl_detalles_calificaciones
+- idx_nrc (nrc)
+
+#### tbl_calificaciones_parciales
+- idx_estudiante_id (estudiante_id)
+- idx_detalle_calificacion_id (detalle_calificacion_id)
+- idx_estado_id (estado_id)
+
+#### tbl_calificaciones_finales
+- idx_nrc (nrc)
+- idx_estudiante_id (estudiante_id)
+- idx_estado_id (estado_id)
+
+#### tbl_auditoria_usuarios
+- idx_usuario_id (usuario_id)
+- idx_fecha_accion (fecha_accion)
+
+#### tbl_auditoria_inscripciones
+- idx_inscripcion_id (inscripcion_id)
+- idx_fecha_accion (fecha_accion)
 
 # Restricciones y Reglas de Negocio
 
