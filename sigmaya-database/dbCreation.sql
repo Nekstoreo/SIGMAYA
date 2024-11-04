@@ -281,3 +281,59 @@ CREATE TABLE tbl_prerrequisitos (
     materia_id CHAR(4) REFERENCES tbl_materias(materia_id),
     prerrequisito_materia_id CHAR(4) REFERENCES tbl_materias(materia_id)
 );
+
+--- Procedimientos almacenados, Trigger y funciones
+
+
+CREATE SEQUENCE seq_materia_id
+START WITH 1
+INCREMENT BY 1;
+
+CREATE OR REPLACE FUNCTION generate_materia_id()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.materia_id := LPAD(nextval('seq_materia_id')::text, 4, '0');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER before_insert_materias
+BEFORE INSERT ON tbl_materias
+FOR EACH ROW
+EXECUTE FUNCTION generate_materia_id();
+
+
+CREATE SEQUENCE seq_curso_id
+START WITH 1
+INCREMENT BY 1;
+
+CREATE OR REPLACE FUNCTION generate_curso_id()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.curso_id := LPAD(nextval('seq_curso_id')::text, 4, '0');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER before_insert_cursos
+BEFORE INSERT ON tbl_cursos
+FOR EACH ROW
+EXECUTE FUNCTION generate_curso_id();
+
+
+CREATE SEQUENCE seq_nrc
+START WITH 1
+INCREMENT BY 1;
+
+CREATE OR REPLACE FUNCTION generate_nrc()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.nrc := LPAD(nextval('seq_nrc')::text, 5, '0');
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER before_insert_secciones
+BEFORE INSERT ON tbl_secciones
+FOR EACH ROW
+EXECUTE FUNCTION generate_nrc();
