@@ -1,6 +1,6 @@
 // src/controllers/ModalidadesYTiposContratoController.ts
 import { Request, Response } from "express";
-import { ModalidadesTiposContratoService } from "src/services/ModalidadesTiposContratoService";
+import { ModalidadesTiposContratoService } from "../services/ModalidadesTiposContratoService";
 
 export class ModalidadesYTiposContratoController {
   private modalidadesTiposContratoService =

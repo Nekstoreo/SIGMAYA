@@ -1,5 +1,6 @@
 // src/repositories/allRepositories.ts
-import { DeepPartial, ObjectLiteral, Repository } from "typeorm";
+import AppDataSource from "../config/database";
+import { Repository } from "typeorm";
 import {
   Pais,
   Region,
@@ -37,8 +38,6 @@ import {
   CalificacionFinal,
   Prerrequisito,
 } from "../models/allModels";
-
-import AppDataSource from "src/config/database";
 
 // Repositorio para tbl_paises
 export class PaisRepository extends Repository<Pais> {
