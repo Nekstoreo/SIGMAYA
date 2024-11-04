@@ -12,11 +12,11 @@ router.put("/programas/:id", controller.updateProgramaAcademico);
 router.delete("/programas/:id", controller.deleteProgramaAcademico);
 
 // Niveles Académicos
-router.get("/niveles", controller.getNivelesAcademicos);
-router.get("/niveles/:id", controller.getNivelAcademicoById);
-router.post("/niveles", controller.createNivelAcademico);
-router.put("/niveles/:id", controller.updateNivelAcademico);
-router.delete("/niveles/:id", controller.deleteNivelAcademico);
+router.get("/niveles-academicos", controller.getNivelesAcademicos);
+router.get("/niveles-academicos/:id", controller.getNivelAcademicoById);
+router.post("/niveles-academicos", controller.createNivelAcademico);
+router.put("/niveles-academicos/:id", controller.updateNivelAcademico);
+router.delete("/niveles-academicos/:id", controller.deleteNivelAcademico);
 
 // Materias
 router.get("/materias", controller.getMaterias);

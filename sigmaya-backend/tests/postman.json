@@ -1,0 +1,319 @@
+{
+    "info": {
+      "name": "Colección de API",
+      "_postman_id": "1e3edeb0-ef75-4d2b-b86f-dcf1dcbe7c85",
+      "description": "Colección de solicitudes para insertar datos en la API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Insertar País",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"pais_id\": 1, \"nombre\": \"Colombia\"}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/paises",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "paises"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Región",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"region_id\": 1, \"pais_id\": 1, \"nombre\": \"Cundinamarca\"}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/regiones",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "regiones"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Ciudad",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"ciudad_id\": 1, \"region_id\": 1, \"nombre\": \"Bogotá\", \"rural\": false}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/ciudades",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "ciudades"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Grupo Étnico",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"etnia_id\": 1, \"nombre\": \"Wayuu\", \"descripcion\": \"Grupo étnico de la región de La Guajira.\"}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/grupos-etnicos",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "grupos-etnicos"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Identidad de Género",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"identidad_id\": 1, \"nombre\": \"Masculino\", \"descripcion\": \"Identidad de género masculino.\"}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/identidades-genero",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "identidades-genero"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Estado Civil",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"estado_civil_id\": 1, \"nombre\": \"Soltero\"}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/estados-civil",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "estados-civil"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Estado",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"estado_id\": 1, \"nombre\": \"Activo\"}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/estados",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "estados"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Tipo de Documento",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"tipo_documento_id\": 1, \"nombre\": \"Cédula de Ciudadanía\"}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/tipos-documento",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "tipos-documento"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Nivel Académico",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"nivel_id\": 1, \"nombre\": \"Pregrado\"}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/niveles-academicos",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "niveles-academicos"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Tipo de Contrato",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"tipo_contrato_id\": 1, \"nombre\": \"Contrato a término fijo\"}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/tiposContrato",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "tiposContrato"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Modalidad",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"modalidad_id\": 1, \"nombre\": \"Presencial\"}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/modalidades",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "modalidades"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Sede",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"sede_id\": 1, \"nombre\": \"Sede Principal\", \"ubicacion\": \"Calle 123\", \"telefono\": \"123456789\", \"email\": \"sede@ejemplo.com\"}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/sedes",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "sedes"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Usuario",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"usuario_id\": 1, \"nombre\": \"Juan Pérez\", \"email\": \"juan.perez@example.com\", \"telefono\": \"3216549870\", \"sede_id\": 1, \"tipo_documento_id\": 1, \"documento\": \"123456789\"}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/usuarios",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "usuarios"]
+          }
+        }
+      },
+      {
+        "name": "Insertar Estudiante",
+        "request": {
+          "method": "POST",
+          "header": [{
+            "key": "Content-Type",
+            "value": "application/json",
+            "description": ""
+          }],
+          "body": {
+            "mode": "raw",
+            "raw": "{\"estudiante_id\": 1, \"usuario_id\": 1, \"nivel_id\": 1, \"modalidad_id\": 1, \"estado_id\": 1}"
+          },
+          "url": {
+            "raw": "http://localhost:3000/api/estudiantes",
+            "protocol": "http",
+            "host": ["localhost"],
+            "port": "3000",
+            "path": ["api", "estudiantes"]
+          }
+        }
+      }
+    ]
+  }
+  
