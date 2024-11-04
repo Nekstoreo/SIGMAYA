@@ -1,9 +1,9 @@
 // src/controllers/UsuariosRolesController.ts
 import { Request, Response } from "express";
-import { UsuariosRolesService } from "../services/UsuariosRolesService";
+import { UsuariosService } from "../services/UsuariosService";
 
-export class UsuariosRolesController {
-  private usuariosRolesService = new UsuariosRolesService();
+export class UsuariosController {
+  private usuariosRolesService = new UsuariosService();
 
   // Usuarios
   async getUsuarios(req: Request, res: Response) {

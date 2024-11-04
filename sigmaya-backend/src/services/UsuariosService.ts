@@ -1,6 +1,6 @@
 import { UsuarioRepository, TipoDocumentoRepository, IdentidadGeneroRepository, GrupoEtnicoRepository, EstadoCivilRepository, EstadoRepository } from "../repositories/allRepositories";
 
-export class UsuariosRolesService {
+export class UsuariosService {
   private usuarioRepo = new UsuarioRepository();
   private tipoDocumentoRepo = new TipoDocumentoRepository();
   private identidadGeneroRepo = new IdentidadGeneroRepository();
