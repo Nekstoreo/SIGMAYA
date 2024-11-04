@@ -4,9 +4,10 @@
   "description": "Backend project with Express, TypeScript and Mongoose",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsc && node dist/index.js",
+    "start": "node dist/index.js",
     "dev": "nodemon src/index.ts",
-    "build": "tsc -p ."
+    "build": "tsc && cp .env dist/.env",
+    "build:watch": "tsc"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
