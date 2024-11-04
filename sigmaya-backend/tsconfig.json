@@ -1,14 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "target": "ES2020",                  // Define el estándar ECMAScript de salida.
+    "module": "commonjs",                // Utiliza el sistema de módulos de Node.js.
+    "strict": true,                      // Activa todas las comprobaciones de tipo estrictas.
+    "esModuleInterop": true,             // Permite la interoperabilidad entre módulos CommonJS y ES6.
+    "skipLibCheck": true,                // Omite la comprobación de tipo en archivos de declaración de librerías.
+    "forceConsistentCasingInFileNames": true, // Forzar el uso de mayúsculas y minúsculas consistentes.
+    "moduleResolution": "node",          // Resolver módulos como Node.js.
+    "outDir": "./dist",                  // Carpeta de salida para los archivos compilados.
+    "rootDir": "./src",                  // Carpeta raíz de los archivos fuente.
+    "baseUrl": ".",                      // Base de resolución de rutas relativas.
+    "emitDecoratorMetadata": true,       // Requerido para TypeORM.
+    "experimentalDecorators": true       // Activa el soporte para decoradores.
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*"],               // Archivos incluidos en la compilación.
+  "exclude": ["node_modules", "dist"]    // Archivos excluidos de la compilación.
 }

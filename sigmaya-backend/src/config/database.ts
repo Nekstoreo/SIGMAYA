@@ -1,18 +1,32 @@
-import mongoose from 'mongoose';
+import { DataSource } from "typeorm";
+import dotenv from "dotenv";
 
-const uri: string = process.env.MONGODB_URI || '';
-if (!uri) {
-  throw new Error("MONGODB_URI is not defined in the environment variables");
-}
+// Cargar las variables de entorno
+dotenv.config();
 
-async function connectToDatabase() {
+const AppDataSource = new DataSource({
+  type: "postgres",
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT),
+  username: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  synchronize: true,         // Solo para desarrollo, sincroniza la base de datos con los modelos
+  logging: false,            // Puedes activar esto en desarrollo para ver los logs de consultas SQL
+  entities: ["src/models/**/*.ts"],  // Ruta a los modelos
+  migrations: ["src/migrations/**/*.ts"], // Ruta a las migraciones (si usas)
+  subscribers: ["src/subscribers/**/*.ts"]
+});
+
+// Inicializa la conexión
+export const connectDB = async () => {
   try {
-    await mongoose.connect(uri);
-    console.log("Successfully connected to MongoDB with Mongoose!");
+    await AppDataSource.initialize();
+    console.log("Conexión a PostgreSQL establecida correctamente.");
   } catch (error) {
-    console.error("Error connecting to MongoDB with Mongoose:", error);
+    console.error("Error al conectar con PostgreSQL:", error);
     process.exit(1);
   }
-}
+};
 
-export default connectToDatabase;
+export default AppDataSource;
