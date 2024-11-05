@@ -7,6 +7,7 @@ Johnson Chen Yu
 
 **Colaboradores**:      
 Esteban Quiceno Loaiza
+Juan Pablo González
 
 ## Descripción del Proyecto
 SIGMAYA es una plataforma moderna y eficiente diseñada para facilitar la gestión académica y administrativa de instituciones de educación superior en Colombia. Este sistema busca proporcionar una experiencia de usuario optimizada, intuitiva y centrada en el usuario, permitiendo a estudiantes, profesores y personal administrativo interactuar de manera eficiente en el ámbito académico.
