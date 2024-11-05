@@ -1,81 +1,90 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { TabTemplate } from '@/components/tab-template'
-import Link from 'next/link'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { TabTemplate } from "@/components/tab-template";
+import Link from "next/link";
 
 interface Class {
-  id: string
-  name: string
-  classroom: string
-  schedule: string
-  students: number
+  id: string;
+  name: string;
+  classroom: string;
+  schedule: string;
+  students: number;
 }
 
 interface TeacherTabsProps {
-  classes: Class[]
+  classes: Class[];
 }
 
 const tabData = [
   {
-    value: 'classes',
-    title: 'Clases',
+    value: "classes",
+    title: "Clases",
     sections: [
       {
-        heading: 'Lista de Clases',
-        description: '',
-        buttonText: '',
-        buttonAction: () => {}
-      }
-    ]
+        heading: "Lista de Clases",
+        description: "",
+        buttonText: "",
+        buttonAction: () => {},
+      },
+    ],
   },
   {
-    value: 'grades',
-    title: 'Calificaciones',
+    value: "grades",
+    title: "Calificaciones",
     sections: [
       {
-        heading: 'Calificaciones',
-        description: 'Aquí puedes gestionar las calificaciones de tus estudiantes.',
-        buttonText: '',
-        buttonAction: () => {}
-      }
-    ]
+        heading: "Calificaciones",
+        description:
+          "Aquí puedes gestionar las calificaciones de tus estudiantes.",
+        buttonText: "",
+        buttonAction: () => {},
+      },
+    ],
   },
   {
-    value: 'schedule',
-    title: 'Horario',
+    value: "schedule",
+    title: "Horario",
     sections: [
       {
-        heading: 'Horario',
-        description: 'Aquí puedes ver tu horario de clases.',
-        buttonText: '',
-        buttonAction: () => {}
-      }
-    ]
+        heading: "Horario",
+        description: "Aquí puedes ver tu horario de clases.",
+        buttonText: "",
+        buttonAction: () => {},
+      },
+    ],
   },
   {
-    value: 'messages',
-    title: 'Mensajes',
+    value: "messages",
+    title: "Mensajes",
     sections: [
       {
-        heading: 'Mensajes',
-        description: 'Aquí puedes ver y gestionar tus mensajes.',
-        buttonText: '',
-        buttonAction: () => {}
-      }
-    ]
-  }
-]
+        heading: "Mensajes",
+        description: "Aquí puedes ver y gestionar tus mensajes.",
+        buttonText: "",
+        buttonAction: () => {},
+      },
+    ],
+  },
+];
 
 export function TeacherTabs({ classes }: TeacherTabsProps) {
   return (
     <Tabs defaultValue="classes" className="space-y-4">
       <TabsList>
-        {tabData.map(tab => (
-          <TabsTrigger key={tab.value} value={tab.value}>{tab.title}</TabsTrigger>
+        {tabData.map((tab) => (
+          <TabsTrigger key={tab.value} value={tab.value}>
+            {tab.title}
+          </TabsTrigger>
         ))}
       </TabsList>
-
       <TabsContent value="classes">
         <Card>
           <CardHeader>
@@ -96,12 +105,18 @@ export function TeacherTabs({ classes }: TeacherTabsProps) {
                 {classes.map((class_) => (
                   <TableRow key={class_.id}>
                     <TableCell>
-                      <Link href={`/clase/${class_.id.split(' ').join('-')}`} className="text-blue-600 hover:underline">
+                      <Link
+                        href={`${class_.id.split(" ").join("-")}`}
+                        className="text-blue-600 hover:underline"
+                      >
                         {class_.id}
                       </Link>
                     </TableCell>
                     <TableCell>
-                      <Link href={`/clase/${class_.id.split(' ').join('-')}`} className="text-blue-600 hover:underline">
+                      <Link
+                        href={`teacher/course-info#${class_.id.split(" ").join("-")}`}
+                        className="text-blue-600 hover:underline"
+                      >
                         {class_.name}
                       </Link>
                     </TableCell>
@@ -115,10 +130,6 @@ export function TeacherTabs({ classes }: TeacherTabsProps) {
           </CardContent>
         </Card>
       </TabsContent>
-
-      {tabData.map(tab => (
-        <TabTemplate key={tab.value} value={tab.value} title={tab.title} sections={tab.sections} />
-      ))}
     </Tabs>
-  )
+  );
 }
