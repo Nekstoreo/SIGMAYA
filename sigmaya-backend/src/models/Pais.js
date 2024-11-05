@@ -9,7 +9,7 @@ export const Pais = sequelize.define("Pais", {
     primaryKey: true,
   },
   nombre: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     unique: true,
   },
 }, { tableName: "tbl_paises" });

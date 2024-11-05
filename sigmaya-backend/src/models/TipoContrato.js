@@ -5,12 +5,12 @@ import sequelize from "../config/database.js";
 
 export const TipoContrato = sequelize.define("TipoContrato", {
   tipo_contrato_id: {
-    type: DataTypes.SMALLINT,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
   nombre: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     unique: true,
   },
 }, { tableName: "tbl_tipos_contrato" });

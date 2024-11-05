@@ -7,7 +7,7 @@ import { Materia } from "./Materia.js";
 
 export const Prerrequisito = sequelize.define("Prerrequisito", {
   prerrequisito_id: {
-    type: DataTypes.SMALLINT,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
@@ -27,5 +27,5 @@ export const Prerrequisito = sequelize.define("Prerrequisito", {
   }
 }, { tableName: "tbl_prerrequisitos" });
 
-Prerrequisito.belongsTo(Materia, { foreignKey: 'materia_id' });
-Prerrequisito.belongsTo(Materia, { foreignKey: 'prerrequisito_materia_id' });
+Prerrequisito.belongsTo(Materia, { as: 'Materia', foreignKey: 'materia_id' });
+Prerrequisito.belongsTo(Materia, { as: 'PrerrequisitoMateria', foreignKey: 'prerrequisito_materia_id' });

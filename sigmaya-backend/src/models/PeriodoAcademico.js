@@ -13,22 +13,27 @@ export const PeriodoAcademico = sequelize.define("PeriodoAcademico", {
   },
   anio: {
     type: DataTypes.INTEGER,
+    allowNull: false,
   },
   semestre: {
-    type: DataTypes.STRING,
+    type: DataTypes.INTEGER,
+    allowNull: false,
   },
   fecha_inicio: {
     type: DataTypes.DATE,
+    allowNull: false,
   },
   fecha_fin: {
     type: DataTypes.DATE,
+    allowNull: false,
   },
   estado_id: {
-    type: DataTypes.SMALLINT,
+    type: DataTypes.INTEGER,
     references: {
       model: Estado,
       key: 'estado_id'
-    }
+    },
+    allowNull: false,
   }
 }, { tableName: "tbl_periodos_academicos" });
 

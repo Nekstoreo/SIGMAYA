@@ -9,13 +9,17 @@ export const Materia = sequelize.define("Materia", {
     primaryKey: true,
   },
   nombre: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     unique: true,
   },
-  tipo_programa: {
-    type: DataTypes.STRING,
+  nivel_academico_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'tbl_niveles_academicos',
+      key: 'nivel_id'
+    }
   },
   descripcion: {
     type: DataTypes.TEXT,
-  },
+  }
 }, { tableName: "tbl_materias" });

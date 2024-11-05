@@ -12,9 +12,9 @@ export const NivelAcademico = sequelize.define(
       primaryKey: true,
     },
     nombre: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       unique: true,
     },
   },
-  { tableName: "tbl_niveles_academicos" }
+  { tableName: "tbl_niveles_academicos", timestamps: false }
 );

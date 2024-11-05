@@ -28,7 +28,10 @@ export const Ciudad = sequelize.define(
       type: DataTypes.BOOLEAN,
     },
   },
-  { tableName: "tbl_ciudades" }
+  { 
+    tableName: "tbl_ciudades",
+    timestamps: false // Assuming there are no createdAt and updatedAt columns
+  }
 );
 
 Ciudad.belongsTo(Departamento, { foreignKey: "departamento_id" });

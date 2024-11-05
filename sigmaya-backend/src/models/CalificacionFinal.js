@@ -33,7 +33,7 @@ export const CalificacionFinal = sequelize.define(
       type: DataTypes.DECIMAL(3, 2),
     },
     estado_id: {
-      type: DataTypes.SMALLINT,
+      type: DataTypes.INTEGER,
       references: {
         model: Estado,
         key: 'estado_id'

@@ -23,7 +23,7 @@ export const ProgramaEstudiante = sequelize.define("ProgramaEstudiante", {
     }
   },
   programa_id: {
-    type: DataTypes.SMALLINT,
+    type: DataTypes.INTEGER,
     references: {
       model: ProgramaAcademico,
       key: 'programa_id'
@@ -43,18 +43,12 @@ export const ProgramaEstudiante = sequelize.define("ProgramaEstudiante", {
       key: 'periodo_id'
     }
   },
-  creditos_aprobados: {
-    type: DataTypes.INTEGER,
-  },
   estado_id: {
-    type: DataTypes.SMALLINT,
+    type: DataTypes.INTEGER,
     references: {
       model: Estado,
       key: 'estado_id'
     }
-  },
-  fecha_egreso: {
-    type: DataTypes.DATE,
   }
 }, { tableName: "tbl_programas_estudiantes" });
 

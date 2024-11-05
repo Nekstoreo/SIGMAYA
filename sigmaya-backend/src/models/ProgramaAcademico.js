@@ -18,7 +18,7 @@ export const ProgramaAcademico = sequelize.define(
       primaryKey: true,
     },
     nombre: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       unique: true,
     },
     facultad_id: {

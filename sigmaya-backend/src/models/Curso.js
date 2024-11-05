@@ -20,15 +20,19 @@ export const Curso = sequelize.define("Curso", {
   },
   titulo: {
     type: DataTypes.STRING,
+    allowNull: false,
   },
   creditos: {
     type: DataTypes.INTEGER,
+    allowNull: false,
   },
   intensidad_horaria: {
     type: DataTypes.INTEGER,
+    allowNull: false,
   },
   contenido_tematico: {
     type: DataTypes.TEXT,
+    allowNull: false,
   },
   estado_id: {
     type: DataTypes.SMALLINT,

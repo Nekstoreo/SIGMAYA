@@ -9,7 +9,7 @@ export const Departamento = sequelize.define(
   "Departamento",
   {
     departamento_id: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
@@ -21,11 +21,11 @@ export const Departamento = sequelize.define(
       },
     },
     nombre: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       unique: true,
     },
   },
   { tableName: "tbl_departamentos" }
 );
 
-Region.belongsTo(Pais, { foreignKey: "pais_id" });
+Departamento.belongsTo(Pais, { foreignKey: "pais_id" });

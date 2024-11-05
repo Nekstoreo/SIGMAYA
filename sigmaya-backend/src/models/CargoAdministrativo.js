@@ -7,12 +7,12 @@ export const CargoAdministrativo = sequelize.define(
   "CargoAdministrativo",
   {
     cargo_id: {
-      type: DataTypes.SMALLINT,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
     nombre: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
       unique: true,
     },
     descripcion: {

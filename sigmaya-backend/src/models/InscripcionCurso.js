@@ -9,7 +9,7 @@ import { Seccion } from "./Seccion.js";
 
 export const InscripcionCurso = sequelize.define("InscripcionCurso", {
   inscripcion_id: {
-    type: DataTypes.BIGINT,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
@@ -32,14 +32,11 @@ export const InscripcionCurso = sequelize.define("InscripcionCurso", {
     defaultValue: DataTypes.NOW,
   },
   estado_id: {
-    type: DataTypes.SMALLINT,
+    type: DataTypes.INTEGER,
     references: {
       model: Estado,
       key: 'estado_id'
     }
-  },
-  nota_final: {
-    type: DataTypes.DECIMAL(3, 2),
   },
 }, { tableName: "tbl_inscripciones_curso" });
 

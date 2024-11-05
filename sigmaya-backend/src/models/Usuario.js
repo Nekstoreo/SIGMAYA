@@ -6,6 +6,7 @@ import { IdentidadGenero } from "./IdentidadGenero.js";
 import { GrupoEtnico } from "./GrupoEtnico.js";
 import { EstadoCivil } from "./EstadoCivil.js";
 import { Estado } from "./Estado.js";
+import { Rol } from "./Rol.js";
 
 export const Usuario = sequelize.define(
   "Usuario",
@@ -15,7 +16,7 @@ export const Usuario = sequelize.define(
       primaryKey: true,
     },
     tipo_documento: {
-      type: DataTypes.SMALLINT,
+      type: DataTypes.INTEGER,
       references: {
         model: TipoDocumento,
         key: "tipo_documento_id",
@@ -47,21 +48,21 @@ export const Usuario = sequelize.define(
       type: DataTypes.STRING(200),
     },
     ciudad_origen: {
-      type: DataTypes.BIGINT,
+      type: DataTypes.INTEGER,
       references: {
         model: Ciudad,
         key: "ciudad_id",
       },
     },
     genero: {
-      type: DataTypes.SMALLINT,
+      type: DataTypes.INTEGER,
       references: {
         model: IdentidadGenero,
         key: "identidad_id",
       },
     },
     etnia: {
-      type: DataTypes.SMALLINT,
+      type: DataTypes.INTEGER,
       references: {
         model: GrupoEtnico,
         key: "etnia_id",
@@ -71,14 +72,14 @@ export const Usuario = sequelize.define(
       type: DataTypes.DATE,
     },
     estado_civil: {
-      type: DataTypes.SMALLINT,
+      type: DataTypes.INTEGER,
       references: {
         model: EstadoCivil,
         key: "estado_civil_id",
       },
     },
     estado: {
-      type: DataTypes.SMALLINT,
+      type: DataTypes.INTEGER,
       references: {
         model: Estado,
         key: "estado_id",
@@ -90,8 +91,8 @@ export const Usuario = sequelize.define(
     foto_perfil: {
       type: DataTypes.STRING,
     },
-    role: {
-      type: DataTypes.SMALLINT,
+    rol_id: {
+      type: DataTypes.INTEGER,
       references: {
         model: Rol,
         key: "rol_id",
@@ -107,3 +108,4 @@ Usuario.belongsTo(IdentidadGenero, { foreignKey: "genero" });
 Usuario.belongsTo(GrupoEtnico, { foreignKey: "etnia" });
 Usuario.belongsTo(EstadoCivil, { foreignKey: "estado_civil" });
 Usuario.belongsTo(Estado, { foreignKey: "estado" });
+Usuario.belongsTo(Rol, { foreignKey: "rol_id" });

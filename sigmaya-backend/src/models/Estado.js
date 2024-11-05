@@ -7,14 +7,14 @@ export const Estado = sequelize.define(
   "Estado",
   {
     estado_id: {
-      type: DataTypes.SMALLINT,
+      type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
     nombre: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(50),
       unique: true,
     },
   },
-  { tableName: "tbl_estados" }
+  { tableName: "tbl_estados", timestamps: false }
 );

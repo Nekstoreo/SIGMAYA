@@ -10,7 +10,7 @@ export const TipoAdmision = sequelize.define("TipoAdmision", {
     primaryKey: true,
   },
   nombre: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     unique: true,
   },
-}, { tableName: "tbl_tipos_admision" });
+}, { tableName: "tbl_tipos_admision", timestamps: false });

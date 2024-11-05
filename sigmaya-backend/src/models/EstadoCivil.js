@@ -10,7 +10,7 @@ export const EstadoCivil = sequelize.define("EstadoCivil", {
     primaryKey: true,
   },
   nombre: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     unique: true,
   },
-}, { tableName: "tbl_estado_civil" });
+}, { tableName: "tbl_estado_civil", timestamps: false });

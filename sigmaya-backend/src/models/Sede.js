@@ -10,17 +10,17 @@ export const Sede = sequelize.define("Sede", {
     primaryKey: true,
   },
   nombre: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     unique: true,
     allowNull: false,
   },
   ubicacion: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(200),
   },
   telefono: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(20),
   },
   email: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
   },
 }, { tableName: "tbl_sedes" });

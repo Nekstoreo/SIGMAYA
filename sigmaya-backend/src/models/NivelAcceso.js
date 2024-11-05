@@ -10,7 +10,7 @@ export const NivelAcceso = sequelize.define("NivelAcceso", {
     primaryKey: true,
   },
   nombre: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     unique: true,
   },
   descripcion: {

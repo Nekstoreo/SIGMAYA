@@ -1,9 +1,7 @@
+// DetalleCalificacion.js
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
-
 import { Seccion } from "./Seccion.js";
-
-// tbl_detalles_calificaciones
 
 export const DetalleCalificacion = sequelize.define(
   "DetalleCalificacion",
@@ -16,12 +14,12 @@ export const DetalleCalificacion = sequelize.define(
     nrc: {
       type: DataTypes.CHAR(5),
       references: {
-        model: Seccion,
-        key: 'nrc'
-      }
+        model: "tbl_secciones", // Usar nombre de tabla en lugar del modelo
+        key: "nrc",
+      },
     },
     actividad: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(100),
     },
     porcentaje: {
       type: DataTypes.DECIMAL(3, 2),

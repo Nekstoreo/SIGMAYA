@@ -17,13 +17,19 @@ export const CalificacionParcial = sequelize.define(
     },
     nota: {
       type: DataTypes.DECIMAL(3, 2),
+      allowNull: false,
     },
     fecha_calificacion: {
       type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    observaciones: {
+      type: DataTypes.TEXT,
     },
   },
   { tableName: "tbl_calificaciones_parciales" }
 );
+
 CalificacionParcial.belongsTo(Estudiante, { foreignKey: "estudiante_id" });
 CalificacionParcial.belongsTo(DetalleCalificacion, {
   foreignKey: "detalle_calificacion_id",

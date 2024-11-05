@@ -14,23 +14,27 @@ export const Administrativo = sequelize.define(
     administrativo_id: {
       type: DataTypes.CHAR(9),
       primaryKey: true,
+      references: {
+        model: Usuario,
+        key: 'usuario_id'
+      }
     },
     cargo_id: {
-      type: DataTypes.SMALLINT,
+      type: DataTypes.INTEGER,
       references: {
         model: CargoAdministrativo,
         key: 'cargo_id'
       }
     },
     area_id: {
-      type: DataTypes.SMALLINT,
+      type: DataTypes.INTEGER,
       references: {
         model: AreasAdministrativas,
         key: 'area_id'
       }
     },
     nivel_acceso_id: {
-      type: DataTypes.SMALLINT,
+      type: DataTypes.INTEGER,
       references: {
         model: NivelAcceso,
         key: 'nivel_acceso_id'

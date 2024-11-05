@@ -2,7 +2,11 @@ import jwt from "jsonwebtoken";
 
 export function authMiddleware(requiredRole) {
   return (req, res, next) => {
-    const token = req.header("Authorization").replace("Bearer ", "");
+    const authHeader = req.header("Authorization");
+    if (!authHeader) {
+      return res.status(401).json({ message: "Acceso denegado. No se encontró el token." });
+    }
+    const token = authHeader.replace("Bearer ", "");
     if (!token) {
       return res.status(401).json({ message: "Acceso denegado. No se encontró el token." });
     }

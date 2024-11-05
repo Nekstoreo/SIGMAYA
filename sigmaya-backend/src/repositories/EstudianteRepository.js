@@ -13,6 +13,10 @@ export class EstudianteRepository {
     return await this.model.findAll();
   }
 
+  async findOne(options) {
+    return await this.model.findOne(options);
+  }
+
   async findById(id) {
     return await this.model.findByPk(id);
   }

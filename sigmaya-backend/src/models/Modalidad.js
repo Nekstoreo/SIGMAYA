@@ -10,7 +10,7 @@ export const Modalidad = sequelize.define("Modalidad", {
     primaryKey: true,
   },
   nombre: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     unique: true,
   },
 }, { tableName: "tbl_modalidades" });

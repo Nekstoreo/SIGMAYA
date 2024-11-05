@@ -5,12 +5,12 @@ import { Sede } from "./Sede.js";
 
 export const AreasAdministrativas = sequelize.define("AreasAdministrativas", {
   area_id: {
-    type: DataTypes.SMALLINT,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
   nombre: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     unique: true,
   },
   descripcion: {
@@ -25,4 +25,4 @@ export const AreasAdministrativas = sequelize.define("AreasAdministrativas", {
   }
 }, { tableName: "tbl_areas_administrativas" });
 
-Departamento.belongsTo(Sede, { foreignKey: 'sede_id' });
+AreasAdministrativas.belongsTo(Sede, { foreignKey: 'sede_id' });

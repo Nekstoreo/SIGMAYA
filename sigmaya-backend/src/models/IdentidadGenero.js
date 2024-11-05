@@ -5,12 +5,12 @@ import sequelize from "../config/database.js";
 
 export const IdentidadGenero = sequelize.define("IdentidadGenero", {
   identidad_id: {
-    type: DataTypes.SMALLINT,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
   },
   nombre: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(100),
     unique: true,
   },
   descripcion: {

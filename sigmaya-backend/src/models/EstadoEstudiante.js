@@ -10,7 +10,8 @@ export const EstadoEstudiante = sequelize.define("EstadoEstudiante", {
     primaryKey: true,
   },
   nombre: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(50),
     unique: true,
+    allowNull: false,
   },
 }, { tableName: "tbl_estados_estudiante" });

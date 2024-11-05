@@ -1,5 +1,7 @@
+import { DECIMAL } from "sequelize";
 import {
-  DetalleCalificacion
+  DetalleCalificacion,
+  setupAssociations
 } from "../models/DetalleCalificacion.js";
 
 // Repositorio para tbl_detalles_calificaciones
@@ -7,6 +9,7 @@ import {
 export class DetalleCalificacionRepository {
   constructor() {
     this.model = DetalleCalificacion;
+    setupAssociations();
   }
 
   async findAll() {

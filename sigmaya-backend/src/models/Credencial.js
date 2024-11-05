@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import { Estado } from "./Estado.js";
 import { Usuario } from "./Usuario.js";
 
@@ -39,7 +39,7 @@ export const Credencial = sequelize.define("Credencial", {
     type: DataTypes.DATE,
   },
   ip_ultimo_acceso: {
-    type: DataTypes.STRING,
+    type: DataTypes.STRING(20),
   },
   bloqueado: {
     type: DataTypes.BOOLEAN,

@@ -16,6 +16,7 @@ export const Facultad = sequelize.define("Facultad", {
   nombre: {
     type: DataTypes.STRING,
     unique: true,
+    allowNull: false,
   },
   escuela_id: {
     type: DataTypes.SMALLINT,
