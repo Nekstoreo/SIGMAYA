@@ -1,10 +1,8 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
-
+import bcrypt from "bcryptjs";
 import { Estado } from "./Estado.js";
 import { Usuario } from "./Usuario.js";
-
-// tbl_credenciales
 
 export const Credencial = sequelize.define("Credencial", {
   credencial_id: {
@@ -53,7 +51,23 @@ export const Credencial = sequelize.define("Credencial", {
       key: 'estado_id'
     }
   }
-}, { tableName: "tbl_credenciales" });
+}, { 
+  tableName: "tbl_credenciales",
+  hooks: {
+    beforeCreate: async (credencial) => {
+      if (credencial.password_hash) {
+        const salt = await bcrypt.genSalt(10);
+        credencial.password_hash = await bcrypt.hash(credencial.password_hash, salt);
+      }
+    },
+    beforeUpdate: async (credencial) => {
+      if (credencial.password_hash) {
+        const salt = await bcrypt.genSalt(10);
+        credencial.password_hash = await bcrypt.hash(credencial.password_hash, salt);
+      }
+    }
+  }
+});
 
 Credencial.belongsTo(Usuario, { foreignKey: 'usuario_id' });
 Credencial.belongsTo(Estado, { foreignKey: 'estado_id' });

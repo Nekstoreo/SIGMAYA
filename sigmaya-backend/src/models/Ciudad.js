@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
 
-import { Region } from "./Region.js";
+import { Departamento } from "./Departamento.js";
 
 // tbl_ciudades
 
@@ -13,11 +13,11 @@ export const Ciudad = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    region_id: {
+    departamento_id: {
       type: DataTypes.BIGINT,
       references: {
-        model: Region,
-        key: 'region_id'
+        model: Departamento,
+        key: 'departamento_id'
       }
     },
     nombre: {
@@ -31,4 +31,4 @@ export const Ciudad = sequelize.define(
   { tableName: "tbl_ciudades" }
 );
 
-Ciudad.belongsTo(Region, { foreignKey: "region_id" });
+Ciudad.belongsTo(Departamento, { foreignKey: "departamento_id" });
