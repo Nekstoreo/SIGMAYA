@@ -1,7 +1,6 @@
 // DetalleCalificacion.js
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
-import { Seccion } from "./Seccion.js";
 
 export const DetalleCalificacion = sequelize.define(
   "DetalleCalificacion",
@@ -14,7 +13,7 @@ export const DetalleCalificacion = sequelize.define(
     nrc: {
       type: DataTypes.CHAR(5),
       references: {
-        model: "tbl_secciones", // Usar nombre de tabla en lugar del modelo
+        model: "tbl_secciones",
         key: "nrc",
       },
     },
@@ -28,4 +27,3 @@ export const DetalleCalificacion = sequelize.define(
   { tableName: "tbl_detalles_calificaciones" }
 );
 
-DetalleCalificacion.belongsTo(Seccion, { foreignKey: "nrc" });

@@ -8,20 +8,17 @@ import { Seccion } from "../models/Seccion.js";
 import { Profesor } from "../models/Profesor.js";
 import { DetalleCalificacion } from "../models/DetalleCalificacion.js";
 import { CalificacionParcial } from "../models/CalificacionParcial.js";
+import { Usuario } from "../models/Usuario.js";
 
 class EstudianteService {
-  constructor() {
-    this.estudianteRepository = new EstudianteRepository();
-    this.usuarioRepository = new UsuarioRepository();
-  }
 
   async getStudentInfo(estudianteId) {
     try {
-      const studentInfo = await this.estudianteRepository.findOne({
+      const studentInfo = await EstudianteRepository.findOne({
         where: { estudiante_id: estudianteId },
         include: [
           {
-            model: this.usuarioRepository.model,
+            model: Usuario,
             as: "usuario",
           },
           {
@@ -121,7 +118,12 @@ class EstudianteService {
           },
           {
             model: Profesor,
-            attributes: ["nombres", "apellidos"],
+            include: [
+              {
+                model: Usuario,
+                attributes: ["nombres", "apellidos"],
+              },
+            ],
           },
           {
             model: DetalleCalificacion,
@@ -138,13 +140,9 @@ class EstudianteService {
         ],
       });
 
-      if (!seccion) {
-        throw new Error("No se encontró la sección con el NRC proporcionado");
-      }
-
       const courseDetails = {
         curso: seccion.Curso,
-        profesor: `${seccion.Profesor.nombres} ${seccion.Profesor.apellidos}`,
+        profesor: `${seccion.Profesor.Usuario.nombres} ${seccion.Profesor.Usuario.apellidos}`,
         detallesCalificacion: seccion.DetalleCalificacions.map((detalle) => ({
           actividad: detalle.actividad,
           porcentaje: detalle.porcentaje,

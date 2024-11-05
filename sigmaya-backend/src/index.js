@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./config/database.js";
-import { authMiddleware } from "./middlewares/authMiddleware.js";
+import { setupAssociations } from "./models/associations.js";
 
 // Importar rutas
 import authRoutes from "./routes/AuthRoutes.js";
@@ -18,6 +18,8 @@ connectDB();
 
 // Middlewares
 app.use(express.json());
+
+setupAssociations();
 
 // Rutas
 app.use("/auth", authRoutes);
