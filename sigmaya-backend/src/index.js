@@ -5,8 +5,8 @@ import { setupAssociations } from "./models/associations.js";
 
 // Importar rutas
 import authRoutes from "./routes/AuthRoutes.js";
-import estudianteRoutes from "./routes/EstudianteRoutes.js"; // Importar las rutas de estudiante
-
+import estudianteRoutes from "./routes/EstudianteRoutes.js";
+import profesorRoutes from "./routes/ProfesorRoutes.js";
 // Configurar variables de entorno
 dotenv.config();
 
@@ -24,6 +24,7 @@ setupAssociations();
 // Rutas
 app.use("/auth", authRoutes);
 app.use("/estudiante", estudianteRoutes); // Agregar las rutas de estudiante
+app.use("/profesor", profesorRoutes); // Agregar las rutas de profesor
 
 app.get("/", (req, res) => {
   res.send("SIGMAYA API funcionando");

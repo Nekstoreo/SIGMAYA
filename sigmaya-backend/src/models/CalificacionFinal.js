@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
-
+import { InscripcionCurso } from "./InscripcionCurso.js";
 import { Estado } from "./Estado.js";
 import { Estudiante } from "./Estudiante.js";
 import { Seccion } from "./Seccion.js";
@@ -31,6 +31,13 @@ export const CalificacionFinal = sequelize.define(
     },
     nota_final: {
       type: DataTypes.DECIMAL(3, 2),
+    },
+    inscripcion_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: InscripcionCurso,
+        key: "inscripcion_id",
+      },
     },
     estado_id: {
       type: DataTypes.INTEGER,

@@ -1,5 +1,4 @@
 import { EstudianteRepository } from "../repositories/EstudianteRepository.js";
-import { UsuarioRepository } from "../repositories/UsuarioRepository.js";
 import { EstadoEstudiante } from "../models/EstadoEstudiante.js";
 import { PeriodoAcademico } from "../models/PeriodoAcademico.js";
 import { Curso } from "../models/Curso.js";

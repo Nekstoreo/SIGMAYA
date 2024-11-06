@@ -266,6 +266,7 @@ CREATE TABLE tbl_calificaciones_parciales (
     fecha_calificacion DATE DEFAULT CURRENT_DATE,
     detalle_calificacion_id INTEGER REFERENCES tbl_detalles_calificaciones(detalle_calificacion_id),
     estado_id INTEGER REFERENCES tbl_estados (estado_id),
+    inscripcion_id INTEGER REFERENCES tbl_calificaciones_parciales(calificacion_parcial_id),
     observaciones TEXT
 );
 
@@ -274,6 +275,7 @@ CREATE TABLE tbl_calificaciones_finales (
     nrc CHAR(5) REFERENCES tbl_secciones(nrc),
     estudiante_id CHAR(9) REFERENCES tbl_estudiantes(estudiante_id),
     nota_final DECIMAL(3,2),
+    incripcion_id INTEGER REFERENCES tbl_inscripciones_curso(inscripcion_id),
     estado_id INTEGER REFERENCES tbl_estados(estado_id)
 );
 
@@ -381,6 +383,36 @@ CREATE TRIGGER after_usuario_insert
 AFTER INSERT ON tbl_usuarios
 FOR EACH ROW
 EXECUTE FUNCTION generate_temp_credentials();
+
+CREATE OR REPLACE FUNCTION initialize_calificaciones_parciales()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO tbl_calificaciones_parciales (
+        estudiante_id,
+        nota,
+        fecha_calificacion,
+        detalle_calificacion_id,
+        estado_id,
+        inscripcion_id
+    )
+    SELECT
+        NEW.estudiante_id,
+        NULL,  -- Nota inicializada en NULL
+        CURRENT_DATE,
+        detalle_calificacion_id,
+        1,  -- Estado activo por defecto
+        NEW.inscripcion_id
+    FROM tbl_detalles_calificaciones
+    WHERE nrc = NEW.nrc;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER after_inscripcion_insert
+AFTER INSERT ON tbl_inscripciones_curso
+FOR EACH ROW
+EXECUTE FUNCTION initialize_calificaciones_parciales();
 
 ----------------------------------------------------------
 -- Insertar datos de prueba para cada tabla
@@ -747,3 +779,48 @@ INSERT INTO tbl_prerrequisitos (prerrequisito_id, materia_id, prerrequisito_mate
 (1, '0002', '0001'),
 (2, '0003', '0001'),
 (3, '0004', '0001');
+
+-- tbl_calificaciones_parciales
+INSERT INTO tbl_calificaciones_parciales (
+    estudiante_id,
+    nota,
+    fecha_calificacion,
+    detalle_calificacion_id,
+    estado_id,
+    inscripcion_id
+)
+SELECT
+    i.estudiante_id,
+    NULL,  -- Nota inicializada en NULL
+    CURRENT_DATE,
+    d.detalle_calificacion_id,
+    1,  -- Estado activo por defecto
+    i.inscripcion_id
+FROM tbl_inscripciones_curso i
+JOIN tbl_detalles_calificaciones d ON i.nrc = d.nrc
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM tbl_calificaciones_parciales c
+    WHERE c.estudiante_id = i.estudiante_id
+    AND c.detalle_calificacion_id = d.detalle_calificacion_id
+);
+
+-- tbl_calificaciones_finales
+INSERT INTO tbl_calificaciones_finales (
+    nrc,
+    estudiante_id,
+    nota_final,
+    estado_id
+)
+SELECT
+    i.nrc,
+    i.estudiante_id,
+    NULL,  -- Nota final inicializada en NULL
+    1  -- Estado activo por defecto
+FROM tbl_inscripciones_curso i
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM tbl_calificaciones_finales f
+    WHERE f.estudiante_id = i.estudiante_id
+    AND f.nrc = i.nrc
+);

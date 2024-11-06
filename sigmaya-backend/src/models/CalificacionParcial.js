@@ -1,6 +1,8 @@
+// src/models/CalificacionParcial.js
 import { DataTypes } from "sequelize";
 import sequelize from "../config/database.js";
-// tbl_calificaciones_parciales
+import { InscripcionCurso } from "./InscripcionCurso.js";
+import { Estudiante } from "./Estudiante.js";
 
 export const CalificacionParcial = sequelize.define(
   "CalificacionParcial",
@@ -10,6 +12,13 @@ export const CalificacionParcial = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
+    estudiante_id: {
+      type: DataTypes.CHAR(9),
+      references: {
+        model: Estudiante,
+        key: "estudiante_id",
+      },
+    },
     nota: {
       type: DataTypes.DECIMAL(3, 2),
       allowNull: false,
@@ -18,8 +27,21 @@ export const CalificacionParcial = sequelize.define(
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
+    detalle_calificacion_id: {
+      type: DataTypes.INTEGER,
+    },
+    estado_id: {
+      type: DataTypes.INTEGER,
+    },
     observaciones: {
       type: DataTypes.TEXT,
+    },
+    inscripcion_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: InscripcionCurso,
+        key: "inscripcion_id",
+      },
     },
   },
   { tableName: "tbl_calificaciones_parciales" }

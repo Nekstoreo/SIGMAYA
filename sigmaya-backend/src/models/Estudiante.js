@@ -42,8 +42,3 @@ export const Estudiante = sequelize.define("Estudiante", {
     }
   }
 }, { tableName: "tbl_estudiantes" });
-
-Estudiante.belongsTo(Usuario, { foreignKey: 'estudiante_id', as: 'usuario' });
-Estudiante.belongsTo(EstadoEstudiante, { foreignKey: 'estado_id', as: 'estadoEstudiante' });
-Estudiante.belongsTo(TipoAdmision, { foreignKey: 'tipo_admision_id' });
-Estudiante.belongsTo(PeriodoAcademico, { foreignKey: 'cohorte_id', as: 'periodoAcademico' });

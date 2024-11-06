@@ -39,7 +39,3 @@ export const InscripcionCurso = sequelize.define("InscripcionCurso", {
     }
   },
 }, { tableName: "tbl_inscripciones_curso" });
-
-InscripcionCurso.belongsTo(Estudiante, { foreignKey: 'estudiante_id' });
-InscripcionCurso.belongsTo(Seccion, { foreignKey: 'nrc' });
-InscripcionCurso.belongsTo(Estado, { foreignKey: 'estado_id' });

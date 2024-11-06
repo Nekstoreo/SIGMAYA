@@ -101,11 +101,3 @@ export const Usuario = sequelize.define(
   },
   { tableName: "tbl_usuarios" }
 );
-
-Usuario.belongsTo(TipoDocumento, { foreignKey: "tipo_documento" });
-Usuario.belongsTo(Ciudad, { foreignKey: "ciudad_origen" });
-Usuario.belongsTo(IdentidadGenero, { foreignKey: "genero" });
-Usuario.belongsTo(GrupoEtnico, { foreignKey: "etnia" });
-Usuario.belongsTo(EstadoCivil, { foreignKey: "estado_civil" });
-Usuario.belongsTo(Estado, { foreignKey: "estado" });
-Usuario.belongsTo(Rol, { foreignKey: "rol_id" });
